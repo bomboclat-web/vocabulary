@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Mozilla+Text:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="pages">
+    <a class="goBack" href="index.html">вернуться на главную</a>
+    <div class="text">
+      <p>тренировка</p>
+    </div>
+    <div class="overlay">
+      <div class="popup">
+        <p>введите количество слов для тренировки</p>
+        <input type="number" id="num" />
+        <button onclick="startTraining()">начать</button>
+      </div>
+    </div>
+    <div class="trainCard">
+      <div class="okoshko">
+        <div class="pole">
+          <p>слово</p>
+          <input id="trainWord" />
+        </div>
+        <div class="pole">
+          <p>перевод</p>
+          <input id="trainTranslation" />
+        </div>
+      </div>
+      <button onclick="check()">проверка</button>
+    </div>
+  </body>
+  <script>
+    let words = [];
+    let currentIndex = 0;
+    let count = 0;
+    let maxCount = 0;
+
+    async function startTraining() {
+      document.querySelector(".overlay").style.display = "none";
+      document.querySelector(".trainCard").style.display = "flex";
+
+      maxCount = parseInt(document.getElementById("num").value);
+
+      const res = await fetch("http://localhost:3000/words");
+      words = await res.json();
+
+      showNextWord();
+    }
+
+    function showNextWord() {
+      if (count >= maxCount) {
+        alert("Тренировка завершена!");
+        return;
+      }
+      const index = Math.floor(Math.random() * words.length);
+      currentWord = words[index];
+      document.getElementById("trainWord").value = currentWord.word;
+      document.getElementById("trainTranslation").value = "";
+    }
+
+    function check() {
+      const translate = document
+        .getElementById("trainTranslation")
+        .value.trim();
+      if (translate === "") return;
+
+      if (translate === currentWord.translation) {
+        count++;
+        showNextWord();
+      } else {
+        alert("Неверно, попробуй ещё раз!");
+      }
+    }
+    /*async function startTraining() {
+      document.querySelector(".overlay").style.display = "none";
+      document.querySelector(".trainCard").style.display = "flex";
+
+      const i = parseInt(document.getElementById("num"));
+
+        const res = await fetch("http://localhost:3000/words");
+        const words = await res.json();
+        const len=words.length;
+
+        for(let k=0;k<i;k++){
+          const index = Math.floor(Math.random() * len);
+          const word = words[index];
+          document.getElementById("word").value = word.word;
+          async function check(){
+          const translate = document.getElementById("trainTranslation").value.trim();
+
+          if (translate === "") {
+            return;
+          }
+          while (translate !== word.translation) {
+            document.getElementById("translation").value = "";
+          }
+        }
+        
+        }
+
+      const len=words
+      const word = document.getElementById("trainWord").value.trim();
+      await fetch("http://localhost:3000/words/translateaaaaaaaa", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ word, translation }),
+        });*/
+  </script>
+</html>

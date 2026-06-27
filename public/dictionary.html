@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Mozilla+Text:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <body class="pages">
+        <a class="goBack" href="index.html">вернуться на главную</a>
+    <div class="text">
+      <p>словарь</p>
+    </div>
+    <ul id="list"></ul>
+    <script>
+      async function loadWords() {
+        const res = await fetch("http://localhost:3000/words");
+        const words = await res.json();
+        const list = document.getElementById("list");
+        words.forEach((w) => {
+          list.innerHTML += `<li>${w.word} — ${w.translation}</li>`;
+        });
+      }
+      loadWords();
+    </script>
+    
+</body>
+</html>

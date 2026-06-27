@@ -1,0 +1,226 @@
+* { /*хз че это */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body { /* общее для боди */
+  font-family: "Google Sans";
+  min-height: 100vh;
+  display: flex;
+  background-color: antiquewhite;
+  padding: 40px 20px;
+  justify-content: center;
+  align-items: center;
+}
+.first_page { /* боди для главной страницы */
+  background-color: #f4f1bb;
+  padding: 40px 20px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.pages { /* боди для словаря тренировки и добавить слово */
+  background-color: #f4f1bb;
+  padding: 20px 20px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: right;
+  align-items: start;
+  flex-direction: column;
+}
+
+/*.dictionary_page .higher_dictionary {
+  display: flex;
+  justify-content: space-between;
+}*/
+.text { /* для оранжевого текста сверху страницы*/
+  font-family: "Mozilla Text";
+  color: #c64820;
+  font-size: 68px;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 5px;
+}
+.goBack { /* кнопки пернуться на главную */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 20px;
+  color: #8242a0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.goBack:hover { /* кнопки вернуться на главную при наведении */
+  color: #5a2a70;
+}
+/* Сама плашка */
+.first_page .card { /* плашка на главной странице*/
+  background-color: #d9d9d9;
+  padding: 35px 48px 35px 48px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  width: 400px;
+  min-height: 200px;
+  /* Кнопки одна под другой */
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+}
+
+.first_page .text p { /*вот это я хз потому что у мя есть для класса текст это */
+  font-family: "Mozilla Text";
+  color: #c64820;
+  font-size: 68px;
+  font-weight: bold;
+  letter-spacing: -7px;
+  text-align: center;
+  /*margin-bottom: 24px;*/
+}
+
+.first_page .card button { /* кнопки на главном экране*/
+  font-family: "Mozilla Text";
+  padding: 5px 10px 10px 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #419696;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  height: 48px;
+  font-weight: bold;
+  /*letter-spacing: -2px;*/
+}
+
+.first_page .card button:hover {/* кнопки на гл экране при наведении*/
+  background-color: #337d7d;
+}
+
+.pages .card { /* словарь, тренировка, добавить слово - если нужна плашка белая */
+  background-color: #d9d9d9;
+  padding: 35px 48px 35px 48px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  min-width: 400px;
+  min-height: 200px;
+  /* Кнопки одна под другой */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center
+}
+
+.pages .card button { /* добавить словоо - кнопка добавить слово */
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+  
+}
+
+.pages .plashki { /* добавить слово - группа введите слово и перев*/
+  display: flex;
+  flex-direction: row;
+  margin-top: 24px;
+  gap: 25px;
+}
+.pages .plashki input { /* добавить слово - введите слово и перев по отдельности */
+  border-radius: 5px;
+  padding:3px;
+  font-size: 24px;
+  min-height: 30px;
+  min-width: 60px;
+}
+
+
+.overlay { /* Затемнённый фон там где попап */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trainCard{
+  background-color: #d9d9d9;
+  padding: 35px 48px 35px 48px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  min-width: 800px;
+  min-height: 200px;
+  /* Кнопки одна под другой */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center
+}
+
+.popup { /* попап в тренировке */
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  min-width: 300px;
+}
+
+.popup p{
+  font-size:32px;
+  color: rgb(30, 30, 30);
+  font-weight: bold;
+}
+
+.popup input{
+  font-size: 28px;
+  padding: 2px 5px;
+  border-radius: 6px;
+}
+
+.popup button{
+  font-size:28px;
+  cursor: pointer;
+  padding: 0px 10px;
+  border-radius: 8px;
+  min-width: 356px;
+}
+
+.okoshko {
+  font-size:24px;
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
+.pole input { /* добавить слово - введите слово и перев по отдельности */
+  border-radius: 5px;
+  padding:3px;
+  font-size: 24px;
+  min-height: 30px;
+  min-width: 60px;
+}
+.trainCard button{
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

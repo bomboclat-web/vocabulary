@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Mozilla+Text:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="pages">
+    <a class="goBack" href="index.html">вернуться на главную</a>
+    <div class="text">
+      <p>добавить слово</p>
+    </div>
+    <div class="card">
+      <div class="plashki">
+      <input id="word"  placeholder="введите слово" />
+      <input id="translation" placeholder="введите перевод" />
+      </div>
+    
+    <button onclick="AddWord()">добавить слово</button>
+    </div>
+    <script>
+      async function AddWord() {
+        const word = document.getElementById("word").value.trim();
+        const translation = document.getElementById("translation").value.trim();
+
+        if (word === "" || translation === "") {
+          return;
+        }
+        await fetch("http://localhost:3000/words", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ word, translation }),
+        });
+
+        document.getElementById("word").value = "";
+        document.getElementById("translation").value = "";
+      }
+    </script>
+  </body>
+</html>
