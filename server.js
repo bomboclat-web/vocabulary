@@ -9,10 +9,11 @@ app.use(express.static("public")); // отдаёт HTML файлы
 
 // подключение к базе данных
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root", // твой пользователь MySQL
-  password: "CATs3241)", // твой пароль MySQL
-  database: "dictionary", // название базы
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT
 });
 
 db.connect((err) => {
@@ -53,7 +54,7 @@ app.post("/words", (req, res) => {
   );
 });
 
-app.post("/words/translate", (req, res) => {
+/*app.post("/words/translate", (req, res) => {
   const {word} = req.body;
   db.query(
     "select translation from words where word=(?)",
@@ -65,7 +66,7 @@ app.post("/words/translate", (req, res) => {
     },
   );
 });
-
+*/
 /*app.post("/words/translate", (req, res) => {
   const {word} = req.body;
   db.query(
