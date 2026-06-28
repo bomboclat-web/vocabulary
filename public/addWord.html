@@ -33,7 +33,7 @@
         if (word === "" || translation === "") {
           return;
         }
-        await fetch("http://localhost:3000/words", {
+        await fetch("https://vocabulary-production-80ee.up.railway.app/words", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ word, translation }),

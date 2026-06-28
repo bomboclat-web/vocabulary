@@ -21,7 +21,7 @@
     <ul id="list"></ul>
     <script>
       async function loadWords() {
-        const res = await fetch("http://localhost:3000/words");
+        const res = await fetch("https://vocabulary-production-80ee.up.railway.app/words");
         const words = await res.json();
         const list = document.getElementById("list");
         words.forEach((w) => {
