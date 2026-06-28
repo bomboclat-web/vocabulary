@@ -50,7 +50,9 @@
 
       maxCount = parseInt(document.getElementById("num").value);
 
-      const res = await fetch("https://vocabulary-production-80ee.up.railway.app/words");
+      const res = await fetch(
+        "https://vocabulary-production-80ee.up.railway.app/words",
+      );
       words = await res.json();
 
       showNextWord();
@@ -63,17 +65,24 @@
       }
       const index = Math.floor(Math.random() * words.length);
       currentWord = words[index];
-      document.getElementById("trainWord").value = currentWord.word;
+      const normalize = (str) =>
+        str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+      document.getElementById("trainWord").value = normalize(currentWord.word);
       document.getElementById("trainTranslation").value = "";
     }
 
     function check() {
-      const translate = document
+      const translatee = document
         .getElementById("trainTranslation")
         .value.trim();
       if (translate === "") return;
 
-      if (translate === currentWord.translation) {
+      const normalize = (str) =>
+        str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+      const translate = normalize(translatee);
+      const correctAnswer = normalize(currentWord.translation);
+      if (translate === correctAnswer) {
         count++;
         showNextWord();
       } else {
