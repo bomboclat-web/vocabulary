@@ -8,22 +8,25 @@ app.use(express.json());
 app.use(express.static("public")); // отдаёт HTML файлы
 
 // подключение к базе данных
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQLDATABASE,
-  port: process.env.MYSQLPORT
+  port: process.env.MYSQLPORT,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-db.connect((err) => {
+/*db.connect((err) => {
   if (err) {
     console.log("Ошибка подключения:", err);
     return;
   }
   console.log("База данных подключена!");
 });
-
+*/
 // создать таблицу если не существует
 db.query(`
   CREATE TABLE IF NOT EXISTS words (
