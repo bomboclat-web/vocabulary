@@ -150,7 +150,9 @@ body { /* общее для боди */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 9997;
 }
+
 
 .trainCard{
   background-color: #d9d9d9;
@@ -163,7 +165,9 @@ body { /* общее для боди */
   display: flex;
   flex-direction: column;
   gap: 16px;
-  align-items: center
+  align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .popup { /* попап в тренировке */
@@ -175,18 +179,26 @@ body { /* общее для боди */
   gap: 16px;
   align-items: center;
   min-width: 300px;
+  position: relative;
+  z-index: 9998;
 }
 
 .popup p{
   font-size:32px;
   color: rgb(30, 30, 30);
   font-weight: bold;
+  
+}
+
+#popupVvedite{
+  padding-right:20px;
 }
 
 .popup input{
   font-size: 28px;
   padding: 2px 5px;
   border-radius: 6px;
+  
 }
 
 .popup button{
@@ -223,4 +235,25 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.popupKrest{
+  position:absolute;
+  /* align-items: right; */
+  /*justify-content: flex-start;
+  text-align:right;*/
+  right:15px;
+  top:5px;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.trainCard .krest{
+  position:absolute;
+  /* align-items: right; 
+  justify-content: flex-start;*/
+  top: 20px;
+  right: 20px;
+  z-index: 1;
+  cursor: pointer;
 }

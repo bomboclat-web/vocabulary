@@ -18,8 +18,38 @@
     <div class="text">
       <p>словарь</p>
     </div>
+    <div class="card">
+      <div class="plashki">
+      <input id="word" type="text"  placeholder="введите слово" />
+      <input id="translation" type="text" placeholder="введите перевод" />
+      </div>
+    
+    <button onclick="AddWord()">добавить слово</button>
+    </div>
     <ul id="list"></ul>
     <script>
+      async function AddWord() {
+        const word = document.getElementById("word").value.trim();
+        const translation = document.getElementById("translation").value.trim();
+
+        if (word === "" || translation === "") {
+          return;
+        }
+        const onlyLetters = /^[A-Za-zА-Яа-яЁё\s]+$/;
+
+        if (!onlyLetters.test(word) || !onlyLetters.test(translation)) {
+          alert("Только рус/англ буквы");
+          return;
+        } 
+        await fetch("https://vocabulary-production-80ee.up.railway.app/words", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ word, translation }),
+        });
+
+        document.getElementById("word").value = "";
+        document.getElementById("translation").value = "";
+      }
       async function loadWords() {
         const res = await fetch("https://vocabulary-production-80ee.up.railway.app/words");
         const words = await res.json();
