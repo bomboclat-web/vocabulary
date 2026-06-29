@@ -38,7 +38,7 @@ db.query(`
 
 // получить все слова
 app.get("/words", (req, res) => {
-  db.query("SELECT * FROM words", (err, results) => {
+  db.query("SELECT * FROM words order by word asc", (err, results) => {
     if (err) return res.status(500).json({ error: err });
     res.json(results);
   });
